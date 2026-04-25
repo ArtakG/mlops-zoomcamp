@@ -5,6 +5,7 @@ data/
 
 *.parquet
 *.html
+!homework/*.html
 *.csv
 
 .venv
