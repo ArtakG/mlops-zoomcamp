@@ -91,15 +91,17 @@ def train_model(X_train, y_train, X_val, y_val, dv):
 
 @flow(name="nyc-taxi-homework")
 def main_flow():
-    # March 2023 = train, April 2023 = validation
+    # Process train first
     df_train = read_dataframe(2023, 3)
-    df_val = read_dataframe(2023, 4)
-
     X_train, dv = create_features(df_train)
-    X_val, _ = create_features(df_val, dv)
-
     y_train = df_train['duration'].values
+    del df_train  # free memory
+
+    # Then validation
+    df_val = read_dataframe(2023, 4)
+    X_val, _ = create_features(df_val, dv)
     y_val = df_val['duration'].values
+    del df_val  # free memory
 
     run_id = train_model(X_train, y_train, X_val, y_val, dv)
     print(f"MLflow run_id: {run_id}")
