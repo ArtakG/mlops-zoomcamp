@@ -89,19 +89,23 @@ def train_model(X_train, y_train, X_val, y_val, dv):
         return run.info.run_id
 
 
+import gc
+
 @flow(name="nyc-taxi-homework")
 def main_flow():
-    # Process train first
+    # Train
     df_train = read_dataframe(2023, 3)
     X_train, dv = create_features(df_train)
-    y_train = df_train['duration'].values
-    del df_train  # free memory
+    y_train = df_train['duration'].values.copy()
+    del df_train
+    gc.collect()
 
-    # Then validation
+    # Validation
     df_val = read_dataframe(2023, 4)
     X_val, _ = create_features(df_val, dv)
-    y_val = df_val['duration'].values
-    del df_val  # free memory
+    y_val = df_val['duration'].values.copy()
+    del df_val
+    gc.collect()
 
     run_id = train_model(X_train, y_train, X_val, y_val, dv)
     print(f"MLflow run_id: {run_id}")
