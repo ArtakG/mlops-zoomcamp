@@ -13,7 +13,7 @@ from sklearn.metrics import root_mean_squared_error
 import mlflow
 from prefect import flow, task
 
-mlflow.set_tracking_uri("http://localhost:5000")
+mlflow.set_tracking_uri("sqlite:///mlflow.db")  # no server needed
 mlflow.set_experiment("nyc-taxi-homework")
 
 models_folder = Path('models')
