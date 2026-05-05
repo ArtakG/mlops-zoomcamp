@@ -54,9 +54,6 @@ The autologged `Parameters` section in the MLflow UI confirms the value.
 
 **Answer: `min_samples_split = 2`**
 
-![Q3 — train.py output](Q3-train-output.png)
-![Q3 — MLflow run parameters](Q3-mlflow-params.png)
-
 ---
 
 ## Q4. Launch the tracking server locally
@@ -74,14 +71,9 @@ mlflow server \
   --port 5000
 ```
 
-- `backend-store-uri` — where MLflow stores metadata (experiments, runs,
-  params, metrics) → SQLite db (`mlflow.db`).
-- `default-artifact-root` — where MLflow stores artifacts (models, files) →
-  local `./artifacts` folder.
 
 **Answer: `default-artifact-root`**
 
-![Q4 — tracking server UI](Q4-tracking-server.png)
 
 ---
 
@@ -110,13 +102,8 @@ cd cohorts/2025/02-experiment-tracking/homework
 python hpo.py
 ```
 
-Opened the MLflow UI and sorted the runs in the `random-forest-hyperopt`
-experiment by `rmse` ascending. The best run was `polite-midge-921` with
-**RMSE = 5.3354**.
 
 **Answer: `5.335`**
-
-![Q5 — best RMSE in MLflow UI](Q5-mlflow-best-rmse.png)
 
 ---
 
@@ -158,25 +145,7 @@ cd cohorts/2025/02-experiment-tracking/homework
 python register_model.py
 ```
 
-Tail of the output:
 
-```
-🏃 View run unruly-smelt-321 at:
-   http://127.0.0.1:5000/#/experiments/2/runs/0671852a772744cdb1cd30df65d60729
-...
-Best run_id: 0671852a772744cdb1cd30df65d60729
-Best test RMSE: 5.5674
-Created version '2' of model 'random-forest-best-model'.
-```
-
-Verified in the MLflow UI:
-- Experiment `random-forest-best-models` → top run by `test_rmse` shows
   **5.5674** for `unruly-smelt-321`.
-- Models → `random-forest-best-model` exists with a registered version.
 
 **Answer: `5.567`**
-
-![Q6 — register_model.py output](Q6-register-output.png)
-![Q6 — best test RMSE in MLflow UI](Q6-mlflow-best-models.png)
-![Q6 — registered model in Model Registry](Q6-model-registry.png)
-
