@@ -1,7 +1,3 @@
-Working code lives in this folder:
-`batch.py`, `tests/`, `integration_test.py`, `docker-compose.yaml`, `integration_test.sh`,
-`Pipfile`, `Dockerfile`, `model.bin`.
-
 ## Q1. Refactoring
 
 Refactored `batch.py`: created `main(year, month)`, moved everything except `read_data`
